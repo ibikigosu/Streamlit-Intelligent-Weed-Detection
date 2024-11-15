@@ -11,12 +11,12 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-@st.cache_resource
+@st.cache(allow_output_mutation=True)
 def instantiate_model():
     model = YOLO('model/best.pt')
     return model
 
-@st.cache_data
+@st.cache
 def download_success():
     st.balloons()
     st.success('✅ Download Successful !!')
