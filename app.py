@@ -29,12 +29,12 @@ upload_path = "uploads/"
 download_path = "downloads/"
 model = instantiate_model()
 
-st.image(main_image, use_container_width='auto')
+st.image(main_image, use_container_width=True)
 st.title(' Intelligent Weed Detection 🔎🌱')
-st.sidebar.image(top_image, use_container_width='auto')
+st.sidebar.image(top_image, use_container_width=True)
 st.sidebar.header('Input 🛠')
 selected_type = st.sidebar.selectbox('Please select an activity type 🚀', ["Upload Image", "Live Video Feed"])
-st.sidebar.image(bottom_image, use_container_width='auto')
+st.sidebar.image(bottom_image, use_container_width=True)
 
 if selected_type == "Upload Image":
     st.info('✨ Supports all popular image formats 📷 - PNG, JPG, BMP')
