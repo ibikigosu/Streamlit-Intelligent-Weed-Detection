@@ -11,12 +11,12 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def instantiate_model():
     model = YOLO('model/best.pt')
     return model
 
-@st.cache
+@st.cache_data
 def download_success():
     st.balloons()
     st.success('✅ Download Successful !!')
@@ -140,5 +140,3 @@ else:
                 
     except Exception as e:
         st.error(f"❌ Error initializing camera: {str(e)}")
-
-
