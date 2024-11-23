@@ -101,6 +101,7 @@ if selected_type == "Upload Image":
 
 
 else:
+    st.info('⚠️ Note: Live webcam feed may not be available in cloud deployment')
     st.info('✨ The Live Feed from Web-Camera will take some time to load up 🎦')
     live_feed = st.checkbox('Start Web-Camera ✅')
     FRAME_WINDOW = st.image([])
@@ -111,16 +112,19 @@ else:
         cap = None
         
         for idx in camera_indices:
-            cap = cv2.VideoCapture(idx)
-            if cap is not None and cap.isOpened():
-                break
+            try:
+                cap = cv2.VideoCapture(idx)
+                if cap is not None and cap.isOpened():
+                    break
+            except Exception:
+                continue
         
         if cap is None or not cap.isOpened():
-            st.error("❌ Unable to access webcam. Please check your camera permissions and connection.")
-            st.info("Make sure to:\n"
-                   "1. Allow camera access in your browser\n"
-                   "2. Connect a webcam to your device\n"
-                   "3. Make sure no other application is using the camera")
+            st.error("❌ Unable to access webcam in this environment.")
+            st.info("This feature works best when running locally. In cloud deployment, try:\n"
+                   "1. Using the 'Upload Image' option instead\n"
+                   "2. Running the application locally for webcam access\n"
+                   "3. Checking if your browser supports webcam access")
         else:
             if live_feed:
                 try:
@@ -136,12 +140,12 @@ else:
                 except Exception as e:
                     st.error(f"❌ Error during video processing: {str(e)}")
                 finally:
-                    if cap is not None:
-                        cap.release()
+                    cap.release()
             else:
                 if cap is not None:
                     cap.release()
                 st.warning('⚠ The Web-Camera is currently disabled. 😯')
                 
     except Exception as e:
-        st.error(f"❌ Error initializing camera: {str(e)}")
+        st.error("❌ Webcam feature is not available in this environment")
+        st.info("Please use the 'Upload Image' option instead")
