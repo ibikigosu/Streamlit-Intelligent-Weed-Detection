@@ -28,7 +28,7 @@ main_image = Image.open('static/main_banner.png')
 upload_path = "uploads/"
 download_path = "downloads/"
 
-# Create directories if they don't exist
+# Creating directories if they don't exist
 os.makedirs(upload_path, exist_ok=True)
 os.makedirs(download_path, exist_ok=True)
 
@@ -107,7 +107,7 @@ else:
     FRAME_WINDOW = st.image([])
     
     try:
-        # Try different camera indices
+        # Trying different camera indices
         camera_indices = [0, 1, 2]
         cap = None
         

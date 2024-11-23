@@ -8,12 +8,9 @@ ENV PATH="VIRTUAL_ENV/bin:$PATH"
 WORKDIR /app
 ADD . /app
 
-# Install dependencies
 RUN pip install -r requirements.txt
 RUN apt-get update
 
-# Expose port 
 ENV PORT 8501
 
-# Run the application:
 CMD ["streamlit","run","app.py"]
