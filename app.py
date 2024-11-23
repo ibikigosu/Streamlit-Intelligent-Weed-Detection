@@ -27,6 +27,11 @@ main_image = Image.open('static/main_banner.png')
 
 upload_path = "uploads/"
 download_path = "downloads/"
+
+# Create directories if they don't exist
+os.makedirs(upload_path, exist_ok=True)
+os.makedirs(download_path, exist_ok=True)
+
 model = instantiate_model()
 
 st.image(main_image, use_container_width=True)
