@@ -6,7 +6,7 @@ from ultralytics import YOLO
 from pymongo import MongoClient
 import gridfs
 import io
-from datetime import datetime
+from datetime import datetime, timezone
 import numpy as np
 
 # MongoDB connection setup
@@ -69,7 +69,7 @@ if selected_type == "Upload Image":
             # Store original image metadata
             upload_info = {
                 'filename': uploaded_file.name,
-                'upload_date': datetime.now(datetime.UTC),
+                'upload_date': datetime.now(timezone.utc),
                 'file_type': uploaded_file.type
             }
             
@@ -96,7 +96,7 @@ if selected_type == "Upload Image":
             # Store detection results
             detection_info = {
                 'original_file_id': file_id,
-                'detection_date': datetime.now(datetime.UTC),
+                'detection_date': datetime.now(timezone.utc),
                 'filename': f"processed_{uploaded_file.name}"
             }
             
