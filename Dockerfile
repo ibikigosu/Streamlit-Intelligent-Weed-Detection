@@ -1,16 +1,22 @@
-FROM python:3.7
-
-RUN pip install virtualenv
-ENV VIRTUAL_ENV=/venv
-RUN virtualenv venv -p python3
-ENV PATH="VIRTUAL_ENV/bin:$PATH"
+FROM python:3.11-slim
 
 WORKDIR /app
-ADD . /app
 
-RUN pip install -r requirements.txt
-RUN apt-get update
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV PORT 8501
+# Copy requirements first to leverage Docker cache
+COPY requirements.txt .
 
-CMD ["streamlit","run","app.py"]
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
+COPY . .
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "app.py"]
