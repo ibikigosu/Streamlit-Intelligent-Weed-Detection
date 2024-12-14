@@ -82,7 +82,7 @@ if selected_type == "Upload Image":
             )
             
             # Process image with YOLO
-            results = model.predict(source=image, conf=0.5, iou=0.45)
+            results = model.predict(source=image, conf=0.25, iou=0.45)
             res_plotted = results[0].plot()
             
             # Convert BGR to RGB for display
