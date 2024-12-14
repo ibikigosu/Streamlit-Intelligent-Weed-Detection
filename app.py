@@ -152,7 +152,7 @@ else:
                     while cap.isOpened():
                         success, frame = cap.read()
                         if success:
-                            results = model.predict(source=frame, conf=0.5, iou=0.45)
+                            results = model.predict(source=frame, conf=0.25, iou=0.45)
                             annotated_frame = results[0].plot()
                             rgb_frame = cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB)
                             FRAME_WINDOW.image(rgb_frame)
