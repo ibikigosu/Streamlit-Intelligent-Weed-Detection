@@ -1,10 +1,10 @@
 # 🌱 Intelligent Weed Detection
 
-A real-time weed detection application powered by **YOLOv8** and **Streamlit**. Upload images or use your webcam to identify common agricultural weeds with bounding-box annotations.
+A real-time weed detection application powered by **YOLOv11** and **Streamlit**. Upload images or use your webcam to identify common agricultural weeds with bounding-box annotations.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B?logo=streamlit)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-00FFFF)
+![YOLOv11](https://img.shields.io/badge/YOLOv11-Ultralytics-00FFFF)
 ![MongoDB](https://img.shields.io/badge/MongoDB-GridFS-47A248?logo=mongodb)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)
 
@@ -40,7 +40,7 @@ flowchart TB
     end
 
     subgraph Inference["🧠 Inference Engine"]
-        YOLO["YOLOv8 Model<br/>(best.pt)"]
+        YOLO["YOLOv11 Model<br/>(best.pt)"]
         OpenCV["OpenCV<br/>Processing"]
     end
 
@@ -172,7 +172,7 @@ git push heroku main
 Streamlit-Intelligent-Weed-Detection/
 ├── app.py                 # Main Streamlit application
 ├── model/
-│   └── best.pt            # YOLOv8 trained weights
+│   └── best.pt            # YOLOv11 trained weights
 ├── static/
 │   ├── banner_top.png     # UI assets
 │   ├── banner_bottom.png
@@ -224,7 +224,7 @@ Binary files are stored in GridFS (`fs.files` / `fs.chunks`).
 | Package                  | Version   | Purpose               |
 | ------------------------ | --------- | --------------------- |
 | `streamlit`              | ≥1.28.0   | Web UI framework      |
-| `ultralytics`            | 8.3.31    | YOLOv8 inference      |
+| `ultralytics`            | 8.3.31    | YOLOv11 inference     |
 | `opencv-python-headless` | 4.10.0.84 | Image processing      |
 | `pymongo`                | ≥4.10.1   | MongoDB driver        |
 | `torch`                  | ≥1.8.1    | PyTorch backend       |
